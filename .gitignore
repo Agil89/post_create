@@ -1,0 +1,11 @@
+.venv/
+venv
+db.sqlite
+media/
+__pycache__/
+*/__pycache__/
+*.pyc
+*/*.pyc
+*.sql
+postgresdb/
+migrations

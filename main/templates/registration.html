@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block css %}
+<style>
+    .radio-btn{
+        list-style: none;
+    }
+</style>
+{% endblock %}
+
+<section class="ftco-section contact-section register">
+        <div class="container">
+            <div class="row block-9 justify-content-center">
+                <div class="col-md-6 order-md-last d-flex">
+                    <form action="" method="post" enctype="multipart/form-data" class="bg-light p-5 contact-form">
+                           {% csrf_token %}
+                           {{ form.non_field_errors }}
+                           {% for field in form %}
+                           <div class="form-group">
+                               <div class="pb-1 d-flex flex-column justify-content-center align-items-center">
+                                {% if field.name == 'username' %}
+                                <span class="pb-2">Username</span>
+                                {{field}}
+                                <small class="text-danger">
+                                    {{field.errors}}
+                                   </small>
+                                {% endif %}
+                               </div>
+                               <div class="pb-1 d-flex flex-column justify-content-center align-items-center">
+                                {% if field.name == 'password1' %}
+                                <span class="pb-2">Password</span>
+                                {{field}}
+                                <small class="text-danger">
+                                    {{field.errors}}
+                                   </small>
+                                {% endif %}
+                               </div>
+
+                               <div class="pb-1 d-flex flex-column justify-content-center align-items-center">
+                               {% if field.name == 'password2' %}
+                               <span class="pb-2">Confirm password</span>
+                               {{field}}
+                               <small class="text-danger">
+                                {{field.errors}}
+                               </small>
+                               {% endif %}
+                               </div>
+                             
+                               
+
+                           </div>
+                           {% endfor %}
+        
+                        <div class="form-group">
+                            <input type="submit" value="Register" class="btn btn-primary py-2 px-5 w-100" >
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

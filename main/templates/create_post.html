@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="ftco-section contact-section create-story mt-3">
+        <div class="container">
+            <div class="row block-9 justify-content-center">
+                <div class="col-md-6 order-md-last d-flex">
+                    <form action="" method="POST" enctype="multipart/form-data" class="bg-light p-5 contact-form">
+                        <a class="navbar-brand center" href="#">Write your post here<span>.</span></a>
+                        {% csrf_token %}
+                        {{form.non_field_errors}}
+
+                        {% for field in form %}
+                        <div class="form-group">
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                        {% endfor %}
+                        <div class="form-group mt-2">
+                            <input type="submit" value="Create" class="btn btn-primary py-2 w-100 px-5">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+    {% block js %}
+    {% endblock %}

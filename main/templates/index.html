@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'add' %}"  type="button" class="btn btn-primary">Add post</a>
+    </div>
+</div>
+{% for post in posts %}
+<div class="container d-flex flex-column bg-light mt-4 border p-3">
+    <span class="pb-3" >{{post.user.username}}</span>
+    <div class="container d-flex justify-content-around w-100">
+        <span class="w-75 ml-5">{{post.my_post}}</span>
+        <form action="{% url 'like' post.pk %}" method="POST">
+            {% csrf_token %}
+        <div class="d-flex justify-content-around w-25">  
+            <button type="submit" name='post_id' value="{{post.id}}" class="btn btn-primary" >like</button>
+            <!-- <a class="text-danger" href="">unlike</a> -->
+        </div>
+        </form>
+        <form action="{% url 'unlike' post.pk %}" method="POST">
+            {% csrf_token %}
+        <div class="d-flex justify-content-around w-25">  
+            <button type="submit" name='post_id' value="{{post.id}}" class="btn btn-primary" >unlike</button>
+            <!-- <a class="text-danger" href="">unlike</a> -->
+        </div>
+        </form>
+    </div>
+    <small class="text-muted pt-2">Created at: {{post.created_at}}</small>
+</div>
+{% endfor %}
+
+
+{% endblock %}
