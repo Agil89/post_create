@@ -11,4 +11,5 @@ urlpatterns=[
     path('add/',AddPostView.as_view(),name='add'),
     path('like/<int:pk>/',PostLikeView,name='like'),
     path('unlike/<int:pk>/',PostUnlikeView,name='unlike')
+
 ]

@@ -78,7 +78,6 @@ def login(request):
         return Response({'error': 'Please provide both username and password'},
                         status=HTTP_400_BAD_REQUEST)
 
-    # user = authenticate(username=username, password=password)
     user = USER_MODEL.objects.get(username=username, password=password)
     if request.user.is_authenticated:
         print("user is authenticated")
@@ -142,13 +141,8 @@ def PostUnlikeView(request,id):
 class SetLastRequestMiddleware(object):
     def __init__(self, get_response):
         self.get_response = get_response
-        # One-time configuration and initialization.
 
     def __call__(self, request):
-        # Code to be executed for each request before
-        # the view (and later middleware) are called.
-        # if request.user:
-        #
         response = self.get_response(request)
         if request.user.is_authenticated:
             user = USER_MODEL.objects.filter(pk=request.user.pk).last()
