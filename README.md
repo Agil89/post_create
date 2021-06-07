@@ -11,3 +11,5 @@
 - *Migrate Database* : `python manage.py makemigrations` *after* `python manage.py migrate`
 
 - *Run Project* : `python manage.py runserver`
+
+- Use `http://127.0.0.1:8000/swagger/` url for getting api-documentation
